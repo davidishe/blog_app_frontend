@@ -1,0 +1,175 @@
+.mat-button {
+  position: relative;
+  color: white;
+}
+
+.header {
+  position: relative;
+  display: flexbox;
+  padding: 2rem 0rem;
+  left: 1rem;
+}
+
+mat-divider {
+  position: relative;
+}
+
+mat-card {
+  margin-top: 0rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0px;
+
+  mat-card-content {
+    display: flexbox;
+
+    .img-wrapper {
+      position: relative;
+      .img {
+        max-height: 15rem;
+      }
+    }
+
+    b {
+      margin-right: 1rem;
+    }
+
+    span {
+      margin-bottom: 0.5rem;
+    }
+
+    mat-form-field {
+      position: relative;
+      padding-top: 0rem;
+      padding-bottom: 1rem;
+      font-size: 18px;
+      min-width: 15rem;
+
+      .mat-label {
+        padding-left: 0rem;
+        color: rgb(87, 85, 85);
+        font-weight: 300;
+      }
+
+      mat-hint {
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+mat-datepicker-toggle {
+  bottom: -9px;
+  left: -10px;
+  position: relative;
+}
+
+mat-form-field {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.form-group {
+  display: flexbox;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-button {
+  background-color: rgb(29, 29, 29);
+  min-width: 8.5rem;
+  margin-right: 1rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  z-index: 2;
+  left: 0rem;
+  border-radius: 0px;
+  i {
+    text-align: left;
+    top: -1px;
+    position: relative;
+  }
+}
+
+.mat-card {
+  .short-link-wrapper {
+    span {
+      cursor: pointer;
+      display: inline-flex;
+      padding: 0 5px 0 0;
+      display: flex;
+      width: 100%;
+      font-size: 12px;
+
+      .mat-card-short-url {
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.431);
+        font-size: 15px;
+      }
+
+      .material-icons {
+        color: rgba(0, 0, 0, 0.431);
+        top: 3px;
+        position: relative;
+        right: 0px;
+      }
+    }
+
+    span:hover {
+      .mat-card-short-url {
+        color: black;
+      }
+
+      .material-icons {
+        color: black;
+      }
+    }
+  }
+
+  .mat-card-short-url {
+    border-color: transparent;
+    font-size: 16px;
+    pointer-events: none;
+    width: 100%;
+  }
+
+  .mat-card-short-url:focus {
+    outline: none;
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    box-shadow: 0 0 0 30px white inset !important;
+  }
+
+  .long-link-wrapper {
+    display: flex;
+    a.long-link {
+      word-wrap: break-word;
+      padding-top: 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 826px) {
+  mat-card {
+    min-height: 20rem;
+  }
+}
+
+@media (max-width: 555px) {
+  mat-card {
+    min-height: 23rem;
+  }
+}
+
+@media (max-width: 410px) {
+  mat-card {
+    min-height: 28rem;
+  }
+}

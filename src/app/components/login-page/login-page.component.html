@@ -1,0 +1,76 @@
+<div class="login-page-wrapper">
+  <div class="container">
+    <form [formGroup]="formLogin" (ngSubmit)="fnSubmit()">
+      <mat-card class="mat-card-login">
+        <mat-card-header>
+          <mat-card-title>
+            <h3>Вход в приложение</h3>
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label class="mat-label">E-mail</mat-label>
+            <input formControlName="inputLogin" matInput type="email">
+
+            <mat-hint>
+              <div>Введите e-mail</div>
+              <div class="validator" *ngIf="formLogin.get('inputLogin').touched && formLogin.get('inputLogin').invalid">
+
+                <span *ngIf="formLogin.get('inputLogin').hasError('required')">
+                  Введите не пустой e-mail
+                </span>
+                <span *ngIf="formLogin.get('inputLogin').hasError('email')">
+                  Введите корректный e-mail
+                </span>
+
+              </div>
+            </mat-hint>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label class="mat-label">Пароль</mat-label>
+            <input matInput formControlName="inputPassword" [type]="isActive ? 'password' : 'text'">
+
+            <i class="material-icons-outlined" *ngIf="formLogin.get('inputPassword').value && isActive"
+              (click)="changePasswordType()">
+              remove_red_eye
+            </i>
+
+            <i class="material-icons-outlined remove" *ngIf="formLogin.get('inputPassword').value && !isActive"
+              (click)="changePasswordType()">
+              remove_red_eye
+            </i>
+
+            <mat-hint>
+              <div>Введите пароль (минимум 6 символов)</div>
+
+              <div class="validator"
+                *ngIf="formLogin.get('inputPassword').touched && formLogin.get('inputPassword').invalid">
+
+                <span *ngIf="formLogin.get('inputPassword').hasError('required')">
+                  Пароль не может быть пустым
+                </span>
+                <span *ngIf="formLogin.get('inputPassword').hasError('minlength')">
+                  Не выполнено требование к длине пароля. Сейчас введено символов:
+                  {{formLogin.get('inputPassword').value.length}}
+                </span>
+
+              </div>
+            </mat-hint>
+          </mat-form-field>
+          <br>
+        </mat-card-content>
+        <button class="mat-btn" type="submit" mat-flat-button [disabled]="formLogin.invalid" color="primary">
+          войти
+          <mat-icon aria-hidden="false" aria-label="Example home icon">
+            keyboard_arrow_right
+          </mat-icon>
+        </button>
+        <div class="hint-for-user" [routerLink]="'/authorize'">
+          Создать учетную запись
+        </div>
+      </mat-card>
+    </form>
+  </div>
+</div>

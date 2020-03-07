@@ -1,0 +1,69 @@
+<div class="mat-toolbar-wrapper">
+  <mat-toolbar color="primary">
+
+    <mat-toolbar-row>
+
+      <div class="button-wrapper">
+        <button class="toogle" mat-icon-button>
+          <mat-icon (click)="toggle()">menu</mat-icon>
+        </button>
+      </div>
+
+      <h1 class="logo" *ngIf="!logedIn()" [routerLink]="['/']">Ссылки</h1>
+
+      <span class="menu-spacer"></span>
+      <div class="nav-items-wrapper" [ngClass]="{invisible: visibility}">
+        <div class="nav-items">
+
+          <a mat-button routerLinkActive="active-menu" [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}"
+            (click)="visibility = true">
+            Главная
+          </a>
+
+          <a mat-button routerLinkActive="active-menu" [routerLink]="'/items'" (click)="visibility = true">
+            Список
+          </a>
+
+          <a class="mobile" mat-button routerLinkActive="active-menu" [routerLink]="'/authorize'"
+            (click)="visibility = true" *ngIf="!logedIn()">
+            Регистрация
+          </a>
+
+          <a class="mobile" mat-button routerLinkActive="active-menu" [routerLink]="'/login'"
+            (click)="visibility = true" *ngIf="!logedIn()">
+            Войти
+          </a>
+
+          <a class="mobile" *ngIf="logedIn()" mat-button routerLinkActive="active-menu" [routerLink]="'/login'"
+            (click)="visibility = true; logout()">
+            Выйти
+          </a>
+
+          <div class="desctop">
+            <span *ngIf="logedIn()" class="nav-account-name">
+              Привет, {{ auth.decodedToken?.unique_name }}
+            </span>
+            <a class="authorize" *ngIf="!logedIn()" mat-button routerLinkActive="active-menu"
+              [routerLink]="'/authorize'" (click)="visibility = true">
+              Регистрация
+            </a>
+
+            <a class="login" *ngIf="!logedIn()" mat-button routerLinkActive="active-menu" [routerLink]="'/login'"
+              (click)="visibility = true">
+              Войти
+            </a>
+
+            <a *ngIf="logedIn()" mat-button routerLinkActive="active-menu" [routerLink]="'/login'"
+              (click)="visibility = true; logout()">
+              Выйти
+            </a>
+          </div>
+
+
+        </div>
+      </div>
+
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

@@ -1,0 +1,35 @@
+<mat-card class="mat-card-add-item">
+  <form [formGroup]="ItemForm" class="form-group" (ngSubmit)="AddItem(item.id)" autocomplete="off">
+    <mat-card-content>
+
+      <!-- link -->
+      <mat-form-field>
+        <mat-label class="mat-label">Ссылка</mat-label>
+        <input matInput formControlName="link" type="text">
+      </mat-form-field>
+      <br>
+
+      <!-- enrolledDate -->
+      <mat-form-field hideRequiredMarker>
+        <mat-label class="mat-label">Дата создания</mat-label>
+        <input matInput type="text" formControlName="enrolledDate" [matDatepicker]="picker" floatLabel="auto">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-hint>Введите дату</mat-hint>
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-flat-button class="mat-button" color="primary" type="submit"
+        (click)="displayService.title='Список ссылок';">
+        ОК
+      </button>
+
+      <button mat-flat-button class="mat-button" color="primary"
+        (click)="displayService.display='list'; displayService.title='Список ссылок'; this.ItemForm.reset();">
+        Отмена
+      </button>
+
+    </mat-card-footer>
+  </form>
+</mat-card>

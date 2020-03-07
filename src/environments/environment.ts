@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl: 'http://localhost:5000/api/',
+  authUrl: 'http://localhost:5000/api/auth/',
+  qrUrl: 'http://localhost:5000/qr-coder/'
 };
 
 /*
@@ -12,5 +15,6 @@ export const environment = {
  *
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
+ * http://localhost:5000/api/
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
