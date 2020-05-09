@@ -1,39 +1,49 @@
 import { NgModule } from '@angular/core';
-import { MatButtonToggleModule, MatIconModule, MatProgressSpinnerModule, MatToolbarModule, MatDividerModule, MatRadioModule, MatAutocompleteModule, MatSlideToggleModule, MatSnackBarModule, MatTooltipModule, MatCheckboxModule, MatCardModule, MatFormFieldModule, MatDatepickerModule, MatBadgeModule, MatNativeDateModule, MatInputModule, MatStepperModule, MatSelectModule, MatButtonModule, MatSidenavModule, MatSidenav, MatSidenavContent, MatNavList, MatSidenavContainer, MatMenuModule, MatTableDataSource, MatTableModule, MatSortModule
+import { MatIconModule, MatToolbarModule, MatDividerModule, MatSlideToggleModule, MatSnackBarModule, MatTooltipModule, MatCheckboxModule, MatCardModule, MatFormFieldModule, MatDatepickerModule, MatBadgeModule, MatNativeDateModule, MatInputModule, MatButtonModule, MatSidenavModule, MatMenuModule, MatTableModule, MatSortModule, MatListModule, MatPaginatorModule, MatTabsModule, MatChipsModule, MatProgressBarModule, MatExpansionModule, MatButtonToggleModule, MatStepperModule, MatRadioModule
 } from '@angular/material';
+import { CdkStepperModule } from '@angular/cdk/stepper';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const MaterialComponents = [
   MatButtonModule,
   MatInputModule,
-  MatSelectModule,
-  MatStepperModule,
   MatDatepickerModule,
   MatFormFieldModule,
   MatNativeDateModule,
-  BrowserAnimationsModule,
   MatButtonToggleModule,
   MatIconModule,
   MatBadgeModule,
-  MatProgressSpinnerModule,
   MatToolbarModule,
   MatCheckboxModule,
   MatCardModule,
   MatDividerModule,
-  MatRadioModule,
-  MatAutocompleteModule,
   MatSlideToggleModule,
   MatSnackBarModule,
   MatTooltipModule,
   MatMenuModule,
   MatTableModule,
-  MatSortModule
+  MatSortModule,
+  MatListModule,
+  MatPaginatorModule,
+  MatSidenavModule,
+  MatTabsModule,
+  MatChipsModule,
+  MatProgressBarModule,
+  MatExpansionModule,
+  CdkStepperModule,
+  MatStepperModule,
+  MatRadioModule
 ];
 
 @NgModule({
-  imports: [MaterialComponents],
-  exports: [MaterialComponents]
+   imports: [
+      MaterialComponents
+   ],
+   exports: [
+      MaterialComponents
+   ],
+   declarations: [
+   ]
 })
 
 export class MaterialModule {}

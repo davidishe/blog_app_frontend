@@ -1,0 +1,94 @@
+<div class="hero-wrapper">
+  <!-- carousel start -->
+  <div class="carousel-wrapper" id="container">
+    <div ng2-carouselamos class="carousel" [items]="items" [width]="width" [$prev]="prev" [$next]="next" [$item]="item">
+    </div>
+
+    <ng-template #prev>
+      <a id="left">
+        <i class="material-icons navigator">keyboard_arrow_left</i>
+      </a>
+    </ng-template>
+
+    <ng-template #next>
+      <a id="right">
+        <i class="material-icons navigator">keyboard_arrow_right</i>
+      </a>
+    </ng-template>
+
+
+    <ng-template #item let-item let-i="index">
+      <mat-card class="items">
+        <strong class="card-title">
+          {{ item.title }}
+        </strong>
+        <div class="img-wrapper">
+          <img src="./assets/pictures/{{ item.path }}" alt="цветы">
+        </div>
+        <a mat-button class="mat-btn-item">
+          <i class="material-icons">
+            arrow_right_alt
+          </i>
+        </a>
+      </mat-card>
+    </ng-template>
+  </div>
+  <!-- carousel end -->
+
+  <div class="container">
+    <h1 class="title">
+      Наши новинки
+    </h1>
+    <p>
+      Новинки из раздела <a href="#">Готовые композиции</a>
+    </p>
+
+    <div class="grid-wrapper">
+      <div class="grid">
+
+
+        <!-- <mat-card *ngFor="let product of products"> -->
+
+        <mat-card *ngFor="let product of products; let i=index">
+          <div class="card-header">
+            <h4 class="card-name">
+              {{ product.name }}
+            </h4>
+            <div class="price">
+              {{ product.productPrice}} рублей
+            </div>
+          </div>
+
+          <div class="img-wrapper">
+            <img src="{{product.productImage}}" alt="цветы">
+          </div>
+          <div class="card-info">
+            <a *ngIf="!product.productIsSelected" mat-button class="mut-button" (click)="productAddToCart(product)">
+              В корзину
+              <i class="material-icons">
+                work
+              </i>
+            </a>
+
+            <a *ngIf="product.productIsSelected" mat-button class="mut-button"
+              (click)="productDeleteFromCart(product); product.productIsSelected = false">
+              Удалить
+              <i class="material-icons">
+                close
+              </i>
+            </a>
+
+
+            <a mat-button class="mut-button">
+              Детали
+              <i class="material-icons">
+                arrow_right_alt
+              </i>
+            </a>
+          </div>
+        </mat-card>
+
+      </div>
+    </div>
+  </div>
+</div>

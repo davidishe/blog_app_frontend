@@ -1,64 +1,78 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HAMMER_LOADER, BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpErrorHandler } from './services/error.service';
 import { MessageService } from './services/message.service';
-import { ItemsCrudService } from './services/items-crud.service';
-import { ToastrManager } from './services/toastr-manager.service';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from './shared/material.module';
-import { RouterModule } from '@angular/router';
-import { MainPageComponent } from './components/main-page/main-page.component';
-import { ItemsPageComponent } from './components/items-page/items-page.component';
-import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
-import { LoginPageComponent } from './components/login-page/login-page.component';
+import { NavMenuComponent } from './components/layouts/nav-menu/nav-menu.component';
 import { AuthService } from './services/auth.service';
-import { AuthorizePageComponent } from './components/authorize-page/authorize-page.component';
-import { AuthGuard } from './guards/auth.guard';
-import { NewItemPageComponent } from './components/new-item-page/new-item-page.component';
+import { DateAgoPipe } from './pipes/time-ago.pipe';
+import { SideNavComponent } from './components/layouts/side-nav/side-nav.component';
+import { UsersPageComponent } from './components/layouts/admin/users-page/users-page.component';
+import { UserCardComponent } from './components/layouts/admin/user-card/user-card.component';
+import { ProductConfigsComponent } from './components/layouts/admin/product-configs/product-configs.component';
+import { HomeModule } from './components/layouts/home/home.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/material.module';
+import { ErrorComponent } from './components/error/error.component';
+import { NotFoundComponent } from './components/error/not-found/not-found.component';
+import { ServererrorComponent } from './components/error/servererror/servererror.component';
+import { ErrorInterceptor } from './components/core/interceptors/error.interceptor';
+import { CoreModule } from './components/core/core.module';
+import { LoadingInterceptor } from './components/core/interceptors/loading.interceptor';
+import { TypesService } from './services/products/types.service';
+import { RegionsService } from './services/products/regions.service';
+import { JwtInterceptor } from './components/core/interceptors/jwt.interceptor';
+
+
 
 @NgModule({
-  declarations: [
+  declarations:
+  [
     AppComponent,
-
-    // new components
-    ItemsPageComponent,
-    MainPageComponent,
     NavMenuComponent,
-    LoginPageComponent,
-    AuthorizePageComponent,
-    NewItemPageComponent
+    UsersPageComponent,
+    UserCardComponent,
+    DateAgoPipe,
+    SideNavComponent,
+    ProductConfigsComponent,
+    ErrorComponent,
+    ServererrorComponent,
+    NotFoundComponent
   ],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
+  imports:
+  [
     BrowserAnimationsModule,
-
-    // new modules
+    AppRoutingModule,
+    MaterialModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    HomeModule,
     HttpClientModule,
     FormsModule,
-    MaterialModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: MainPageComponent, pathMatch: 'full' },
-      { path: 'items', component: ItemsPageComponent, canActivate: [AuthGuard] },
-      { path: 'login', component: LoginPageComponent },
-      { path: 'authorize', component: AuthorizePageComponent },
-    ]),
+    CoreModule
+  ],
+
+  exports: [
   ],
 
   providers: [
     HttpErrorHandler,
     MessageService,
-    ItemsCrudService,
-    ToastrManager,
-    AuthService
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    AuthService,
+    TypesService,
+    RegionsService,
+    {
+      provide: HAMMER_LOADER,
+      useValue: () => new Promise(() => {})
+    }
   ],
   bootstrap: [AppComponent]
 })

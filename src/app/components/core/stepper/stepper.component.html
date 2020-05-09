@@ -1,0 +1,78 @@
+<div class="stepper-wrapper">
+  <div class="container">
+    <div class="content">
+
+      <h2>{{stepnames[selectedIndex]}}
+      </h2>
+      <div class="step-navigation-bar">
+        <button class="nav-button" cdkStepperPrevious *ngIf="(this.selectedIndex !== 0)" style="padding-left: 10px;">
+          <mat-icon class="material-icons" style="padding-left: 5px; padding-right: 5px;">
+            arrow_back
+          </mat-icon>
+          Назад
+        </button>
+
+        <button class="nav-button mr" cdkStepperNext *ngIf="(this.selectedIndex !== 4)">
+          {{nextBtnNames[selectedIndex]}}
+          <mat-icon class="material-icons ml">
+            arrow_forward
+          </mat-icon>
+        </button>
+      </div>
+      <div [style.display]="selected ? 'block' : 'none'">
+        <ng-container [ngTemplateOutlet]="selected.content">
+        </ng-container>
+      </div>
+
+
+
+    </div>
+
+    <div class="nav-main">
+      <button class="step" *ngFor="let step of steps; let i = index;" [ngClass]="{'active': selectedIndex === i}"
+        (click)="onClick(i)">
+        <span class="material-icons">
+          {{step.label}}
+        </span>
+        {{step.completed}}
+
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <mat-step>
+  <form>
+    <ng-template matStepLabel>Адрес доставки</ng-template>
+    <mat-form-field hideRequiredMarker>
+      <mat-label>Адрес доставки</mat-label>
+      <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+    </mat-form-field>
+    <div>
+      <button mat-button matStepperPrevious>Назад</button>
+      <button mat-button matStepperNext>Дальше</button>
+    </div>
+  </form>
+</mat-step>
+<mat-step>
+  <ng-template matStepLabel>Подтверждение</ng-template>
+  <p>Подтвердите заказ.</p>
+  <div>
+    <button mat-button matStepperPrevious>Назад</button>
+    <button mat-button matStepperNext>Дальше</button>
+  </div>
+</mat-step>
+<mat-step>
+  <ng-template matStepLabel>Оплата</ng-template>
+  <p>Оплатите заказ.</p>
+  <div>
+    <button mat-button matStepperPrevious>Назад</button>
+    <button mat-button matStepperNext>Дальше</button>
+  </div>
+</mat-step>
+<mat-step>
+  <ng-template matStepLabel>Получение заказа</ng-template>
+  <p>Ждите получения заказа.</p>
+</mat-step> -->

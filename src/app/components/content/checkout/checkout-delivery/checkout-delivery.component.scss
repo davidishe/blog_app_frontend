@@ -1,0 +1,17 @@
+mat-radio-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+
+  mat-radio-button {
+    padding-right: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+
+    p {
+      margin-bottom: 0px;
+      margin-left: 5px;
+    }
+  }
+}

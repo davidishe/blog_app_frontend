@@ -1,0 +1,73 @@
+form {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  font-size: 15px;
+
+  .label {
+    color: black;
+  }
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    .mat-form-field-wrapper {
+      width: 100%;
+    }
+
+    .mat-input-login {
+      top: -3px;
+      position: relative;
+    }
+  }
+
+  .mat-hint {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    // background-color: rgb(216, 203, 203);
+
+    .validator {
+      color: var(--main-theme-color-error);
+      right: 12px;
+      position: relative;
+    }
+
+    .forgot-pass {
+      color: black;
+      cursor: pointer;
+    }
+  }
+
+  .mat-btn {
+    cursor: pointer;
+    line-height: 3.7rem;
+    font-size: 14px;
+    margin-top: 2.2rem;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding-right: 25px;
+    padding-left: 36px;
+    border-radius: 30px;
+    margin-bottom: 1rem;
+  }
+
+  .mat-btn:hover {
+    background-color: #202020;
+    color: white;
+  }
+
+  .information-for-user {
+    margin-left: 20px;
+    cursor: pointer;
+    color: #202020;
+    font-size: 14px;
+  }
+
+  .information-for-user:hover {
+    color: black;
+    text-decoration: underline;
+  }
+}

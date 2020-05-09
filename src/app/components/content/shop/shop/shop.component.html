@@ -1,0 +1,125 @@
+<div class="shop-wrapper">
+
+  <div class="container">
+
+    <div class="title-wrapper">
+      <app-page-header></app-page-header>
+      <p>
+        Значимость этих проблем настолько очевидна, что высокотехнологичная концепция общественной системы способствует
+        повышению качества дальнейших направлений развития.
+      </p>
+    </div>
+
+    <div class="shop-header">
+      <div class="products-control-wrapper">
+        <div class="search">
+          <mat-form-field class="example-full-width" floatLabel="never">
+            <input matInput type="text" #search placeholder="Поиск по сайту" (keydown.enter)="onSearch()">
+            <mat-icon *ngIf="!shopParams.search" class="mat-icon" matSuffix (click)="onSearch()">
+              search
+            </mat-icon>
+            <mat-icon *ngIf="shopParams.search" class="mat-icon" matSuffix (click)="onReset()">
+              close
+            </mat-icon>
+          </mat-form-field>
+          <div class="mat-button-wrapper">
+            <a mat-button class="mat-button-service" (click)="onSearch()">Найти</a>
+          </div>
+        </div>
+      </div>
+
+
+      <app-pager-header [totalCount]="totalCount" [products]="this.products"></app-pager-header>
+
+      <div class="filters-wrapper">
+        <mat-chip-list aria-label="selection" *ngFor="let type of types">
+          <mat-chip class="types" [class.active]="type.id === shopParams.typeIdSelected" [value]="type.id"
+            (click)="onTypeSelected(type.id)" color="accent">
+            {{type.name}}
+            <mat-icon matChipRemove *ngIf="type.id === shopParams.typeIdSelected" (click)="onTypeSelected(type.id)">
+              cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+
+        <mat-chip-list aria-label="selection" *ngFor="let region of regions">
+          <mat-chip class="regions" [class.active]="region.id === shopParams.regionIdSelected" [value]="region.id"
+            (click)="onRegionSelected(region.id)">
+            {{region.name}}
+            <mat-icon matChipRemove *ngIf="region.id === shopParams.regionIdSelected"
+              (click)="onRegionSelected(region.id)">cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+
+
+      <div class="filters-wrapper-footer">
+        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onSortSelected(group.value)">
+          <mat-button-toggle value="Name" aria-label="Text align left">
+            <mat-icon>
+              sort_by_alpha
+            </mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="priceDesc" aria-label="Text align center">
+            <mat-icon>sort</mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="priceAsc" aria-label="Text align right">
+            <mat-icon class="down">sort</mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+    </div>
+
+
+    <div class="grid-wrapper">
+      <div class="grid">
+
+        <mat-card *ngFor="let product of products; let i=index">
+          <div class="card-header">
+            <h4 class="card-name">{{ product.name }}</h4>
+            <div class="price">{{ product.productPrice | currency : 'RUB' : 'symbol-narrow' }}</div>
+          </div>
+          <div class="header-product-type">
+            <p><i class="material-icons">eco</i>{{product.productType}}</p>
+            <p><i class="material-icons">place</i>{{product.productRegion}}</p>
+          </div>
+          <div class="img-wrapper"><img src="{{product.pictureUrl}}" alt="цветы"></div>
+
+          <div class="card-info">
+
+            <a *ngIf="!product.productIsSelected" mat-button class="mat-button" (click)="addItemToBasket(product)">
+              В корзину
+              <mat-icon class="material-icons">
+                work
+              </mat-icon>
+            </a>
+
+            <!-- <a *ngIf="product.productIsSelected" mat-button class="mat-button"
+              (click)="productDeleteFromCart(product); product.productIsSelected = false">
+              Удалить
+              <i class="material-icons">
+                close
+              </i>
+            </a> -->
+
+            <a mat-button class="mat-button" (click)="this.busyService.isLoading(true)"
+              routerLink="/shop/{{product.id}}">
+              Детали
+              <mat-icon class="material-icons">
+                transit_enterexit
+              </mat-icon>
+            </a>
+          </div>
+        </mat-card>
+
+      </div>
+    </div>
+
+    <div class="mat-paginator-wrapper">
+      <mat-paginator [length]="this.totalCount" [pageSize]="shopParams.pageSize" [pageSizeOptions]="pageSizeOptions">
+      </mat-paginator>
+    </div>
+
+
+  </div>
+</div>

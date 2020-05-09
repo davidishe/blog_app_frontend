@@ -1,0 +1,42 @@
+.item-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  grid-template-columns: 120px calc(100% - 120px);
+  margin-bottom: 20px;
+  background-color: rgba(221, 219, 204, 0.418);
+  border-radius: 60px;
+
+  .img-wrapper {
+    height: 110px;
+    width: 110px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    border-radius: 133px;
+    background-color: rgb(223, 223, 223);
+
+    img {
+      max-height: 70px;
+      position: relative;
+    }
+  }
+
+  .content {
+    padding-top: 10px;
+    margin-left: 5px;
+    display: flexbox;
+    justify-content: left;
+    width: 100%;
+
+    h3.item-name {
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 0px;
+      font-size: 13px;
+    }
+  }
+}

@@ -1,0 +1,206 @@
+.mat-toolbar-wrapper {
+  right: 0px;
+  background-color: #fafafa;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+
+  .mat-toolbar {
+    background-color: #fafafa;
+    top: 0;
+    left: 0px;
+    color: rgb(6, 11, 29);
+    width: 100%;
+
+    .mat-toolbar-row {
+      z-index: 20;
+      padding-top: 45px;
+      padding-bottom: 45px;
+      width: 100%;
+
+      .nav-items-wrapper {
+        position: relative;
+        width: 100%;
+        justify-content: flex-start;
+
+        .nav-items {
+          z-index: 30;
+          display: flex;
+          vertical-align: middle;
+          align-items: center;
+          justify-content: space-between;
+          position: relative;
+          // background-color: rgb(220, 240, 227);
+
+          .mat-btn {
+            i {
+              margin-right: 5px;
+            }
+          }
+
+          .item-wrapper {
+            // background-color: rgb(214, 203, 203);
+
+            .item-wrapper-cart {
+              min-width: 133px;
+            }
+
+            .item-wrapper-identity {
+              min-width: 133px;
+              margin-left: 20px;
+              // background-color: rgb(255, 255, 255);
+            }
+          }
+
+          .item-wrapper-menu {
+            // border: 1px rgb(201, 198, 198) solid;
+            left: 0px;
+            min-width: 133px;
+            margin-right: 20px;
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// планшетный размер
+@media (max-width: 1400px) {
+  .mat-toolbar-wrapper {
+    width: 100%;
+    background-color: #fafafa;
+
+    mat-toolbar {
+      z-index: 2000;
+
+      background-color: #fafafa;
+      top: 0;
+      left: 28px;
+      width: 100%;
+      color: rgb(6, 11, 29);
+      padding-right: 28px;
+
+      mat-toolbar-row {
+        z-index: 2000;
+        padding-top: 45px;
+        padding-bottom: 45px;
+
+        .nav-items-wrapper {
+          position: relative;
+          width: 100%;
+
+          .nav-items {
+            display: flex;
+            vertical-align: middle;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+
+            .mat-btn {
+              z-index: 2000;
+
+              i {
+                margin-right: 5px;
+              }
+            }
+
+            .example-full-width {
+              width: 500px;
+              background-color: transparent;
+              margin-left: 20px;
+              font-size: 15px;
+
+              mat-icon {
+                top: 5px;
+                padding-left: 4px;
+                padding-right: 4px;
+                position: relative;
+                font-size: 22px;
+              }
+            }
+
+            .item-wrapper-search {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// теелфон
+// планшетный размер
+@media (max-width: 480px) {
+  .mat-toolbar-wrapper {
+    width: 100%;
+    background-color: #fafafa;
+
+    mat-toolbar {
+      z-index: 2000;
+
+      background-color: #fafafa;
+      position: fixed;
+      top: 0;
+      left: 28px;
+      width: 100%;
+      color: rgb(6, 11, 29);
+      padding-right: 28px;
+
+      mat-toolbar-row {
+        z-index: 2000;
+        padding-top: 45px;
+        padding-bottom: 45px;
+        padding-left: 0px;
+        padding-right: 0px;
+
+        .nav-items-wrapper {
+          position: relative;
+          width: 100%;
+
+          .nav-items {
+            display: flex;
+            vertical-align: middle;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            padding-left: 0px;
+            padding-right: 0px;
+
+            .mat-btn {
+              z-index: 2000;
+
+              i {
+                margin-right: 5px;
+              }
+            }
+
+            .example-full-width {
+              width: 500px;
+              background-color: transparent;
+              margin-left: 20px;
+              font-size: 15px;
+
+              mat-icon {
+                top: 5px;
+                padding-left: 4px;
+                padding-right: 4px;
+                position: relative;
+                font-size: 22px;
+              }
+            }
+
+            .item-wrapper-search {
+              display: none;
+            }
+
+            .item-wrapper-identity {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

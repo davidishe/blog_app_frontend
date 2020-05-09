@@ -1,0 +1,11 @@
+.checkout-wrapper {
+  padding-left: 3rem;
+  padding-right: 1rem;
+}
+
+@media (max-width: 400px) {
+  .checkout-wrapper {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

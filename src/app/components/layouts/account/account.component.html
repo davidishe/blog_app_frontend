@@ -1,0 +1,49 @@
+<div class="authorize-page-wrapper">
+  <div class="login-page-wrapper">
+
+
+
+    <div class="container">
+      <mat-tab-group class="mat-tab-group" [selectedIndex]="(tabIndex$ | async)"
+        (selectedIndexChange)="displayService.setIndex($event)">
+        <mat-tab class="mat-tab" label="Вход">
+          <p class="login-description">Значимость этих проблем настолько очевидна, что высокотехнологичная концепция
+            общественной системы
+            способствует повышению качества дальнейших направлений развития. Не вызывает сомнений, что курс на
+            социально-ориентированный национальный проект создаёт предпосылки качественно новых шагов.</p>
+          <app-login></app-login>
+        </mat-tab>
+
+        <!-- регистрация -->
+        <mat-tab label="Регистрация">
+          <p class=" login-description">Значимость этих проблем настолько очевидна, что высокотехнологичная концепция
+            общественной системы
+            способствует повышению качества дальнейших направлений развития. Не вызывает сомнений, что курс на
+            социально-ориентированный национальный проект создаёт предпосылки качественно новых шагов.</p>
+          <app-register></app-register>
+        </mat-tab>
+        <!-- завершение регистрации -->
+
+      </mat-tab-group>
+
+      <div class="img-login-wrapper">
+        <img class="img-login" src="./assets/pictures/flower_login.png" alt="цветы">
+      </div>
+    </div>
+
+    <!-- <div class="smm-authorize-wrapper">
+      <div class="smm-authorize">
+        <p>Используя социальные сети</p>
+        <img src="./assets/icons/facebook.svg">
+        <img src="./assets/icons/google.png">
+        <img src="./assets/icons/vk-social-logotype.png">
+      </div>
+    </div> -->
+
+
+
+  </div>
+
+  <div class="divider"></div>
+
+</div>

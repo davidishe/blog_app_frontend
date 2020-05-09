@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:5000/api/',
-  authUrl: 'http://localhost:5000/api/auth/',
-  qrUrl: 'http://localhost:5000/qr-coder/'
+  apiUrl: 'http://localhost:5000/api/',
+  authUrl: 'http://localhost:5000/api/account/',
 };
 
 /*

@@ -1,0 +1,76 @@
+<div class="landing-page-wrapper">
+  <app-page-header></app-page-header>
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Типы продуктов
+        </mat-panel-title>
+        <mat-panel-description>
+          Здесь можно добавить новые типы продуктов
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="form-wrapper">
+        <form [formGroup]="formLandingTypes" (ngSubmit)="addType()">
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Добавить новый тип</mat-label>
+            <input matInput type="text" formControlName="name">
+          </mat-form-field>
+          <div class="mat-btn-wrapper">
+            <button mat-button class="mat-btn-service" type="submit" disabled="false" mat-flat-button color="primary">
+              Сохранить
+              <mat-icon aria-hidden="false" aria-label="Example home icon">
+                add
+              </mat-icon>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="items">
+        <p *ngFor="let item of types">{{item.name}}</p>
+      </div>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Регионы продукта
+        </mat-panel-title>
+        <mat-panel-description>
+          Здесь можно добавить новые регионы для карточки продукта
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+
+      <div class="form-wrapper">
+        <form [formGroup]="formLandingRegions" (ngSubmit)="addRegion()">
+
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Добавить новый регион</mat-label>
+            <input matInput type="text" formControlName="name">
+          </mat-form-field>
+          <div class="mat-btn-wrapper">
+            <button mat-button class="mat-btn-service" type="submit" disabled="false" mat-flat-button color="primary">
+              Сохранить
+              <mat-icon aria-hidden="false" aria-label="Example home icon">
+                add
+              </mat-icon>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+
+      <div class="items">
+        <p *ngFor="let item of regions">{{item.name}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+</div>
