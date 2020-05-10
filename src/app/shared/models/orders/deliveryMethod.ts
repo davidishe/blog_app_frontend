@@ -7,10 +7,3 @@ export interface IDeliveryMethod {
   id: number;
 }
 
-
-// FirstName: string;
-// LastName: string;
-// Street: string;
-// City: string;
-// House: string;
-// ZipCode: string;

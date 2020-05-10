@@ -38,7 +38,6 @@ export class AppComponent implements OnInit, OnDestroy {
     const token = localStorage.getItem('garden-app-token');
     if (token) {
       this.accountService.loadCurrentUser().subscribe(() => {
-        console.log('loaded user');
       }, err => {
         console.log(err);
       });

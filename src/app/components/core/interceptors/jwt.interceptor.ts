@@ -9,13 +9,11 @@ export class JwtInterceptor implements HttpInterceptor {
 
     const token = localStorage.getItem('garden-app-token');
     if (token) {
-      console.log(token);
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ` + token
         }
       });
-      console.log(req);
       return next.handle(req);
     }
   }

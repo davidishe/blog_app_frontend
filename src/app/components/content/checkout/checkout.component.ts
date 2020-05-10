@@ -54,7 +54,6 @@ export class CheckoutComponent implements OnInit {
   getAddressFormValues() {
     this.accountService.getUserAddress().subscribe(address => {
       if (address) {
-        console.log(address);
         this.checkoutFormGroup.get('addressForm').patchValue(address);
       }
     });

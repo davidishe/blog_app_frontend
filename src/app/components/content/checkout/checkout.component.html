@@ -4,7 +4,6 @@
     <app-order-total></app-order-total>
   </div>
 
-
   <app-stepper [stepnames]="stepnames" #appStepper [nextBtnNames]="nextBtnNames">
     <cdk-step [label]="icons[0]" [completed]="checkoutFormGroup.get('deliveryForm').valid">
       <app-checkout-delivery [checkoutFormGroup]="checkoutFormGroup"></app-checkout-delivery>
@@ -13,10 +12,10 @@
       <app-checkout-address [checkoutFormGroup]="checkoutFormGroup"></app-checkout-address>
     </cdk-step>
     <cdk-step [label]="icons[2]">
-      <app-checkout-review [basketItems]="(basket$ | async).items"></app-checkout-review>
+      <app-checkout-review *ngIf="(basket$ | async)" [basketItems]="(basket$ | async).items"></app-checkout-review>
     </cdk-step>
     <cdk-step [label]="icons[3]">
-      <app-checkout-payment></app-checkout-payment>
+      <app-checkout-payment [checkoutFormGroup]="checkoutFormGroup"></app-checkout-payment>
     </cdk-step>
     <cdk-step [label]="icons[4]">
       <app-checkout-succes></app-checkout-succes>
