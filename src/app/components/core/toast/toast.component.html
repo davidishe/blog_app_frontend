@@ -1,0 +1,7 @@
+<div *ngIf="visible" class="toast-wrapper" [@bounce]>
+  <div>
+    <div class="toast-text" [ngStyle]="{ 'background-color': color, 'color': 'white' }">
+      {{message}}
+    </div>
+  </div>
+</div>

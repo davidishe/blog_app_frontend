@@ -1,88 +1,144 @@
-<form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+<div class="register-wrapper">
+  <div class="container justify-content-center">
 
+    <div class="shadow-wrapper row align-middle">
+      <!-- https://www.behance.net/gallery/59995961/Expoio?tracking_source=search_projects_recommended%7Capps -->
 
-  <mat-form-field floatLabel="never" appearance="outline" floatLabel="always">
-    <mat-label>Имя</mat-label>
-    <input class="mat-input-login" matInput type="text" formControlName="inputDisplayName"
-      placeholder="Василий Цветков">
-
-    <mat-hint class="mat-hint">
-      <div class="validator"
-        *ngIf="formRegister.get('inputDisplayName').touched && formRegister.get('inputDisplayName').invalid">
-        <span *ngIf="formRegister.get('inputDisplayName').hasError('required')">
-          Введите как вас зовут
-        </span>
+      <div class="picture-wrapper col-auto">
+        <div class="img-wrapper">
+          <img class="img" src="./assets/images/pictures/p1.jpg">
+        </div>
       </div>
-    </mat-hint>
-  </mat-form-field>
 
-
-  <mat-form-field floatLabel="never" appearance="outline" floatLabel="always">
-    <mat-label>Логин</mat-label>
-    <input class="mat-input-login" matInput type="email" formControlName="inputLogin" placeholder="username@mail.com">
-
-    <mat-hint class="mat-hint">
-      <div class="validator" *ngIf="formRegister.get('inputLogin').touched && formRegister.get('inputLogin').invalid">
-
-        <span *ngIf="formRegister.get('inputLogin').hasError('required')">
-          Введите не пустой e-mail
-        </span>
-        <span *ngIf="formRegister.get('inputLogin').hasError('email')">
-          Введите корректный e-mail
-        </span>
-
-      </div>
-    </mat-hint>
-  </mat-form-field>
-
-  <br>
-
-
-  <mat-form-field appearance="outline" floatLabel="always">
-    <mat-label>Пароль</mat-label>
-    <input class="mat-input-login" matInput formControlName="inputPassword" placeholder=" - - - - - - - "
-      [type]="isActive ? 'password' : 'text'">
-
-    <button class="mat-input-login" mat-icon-button matSuffix (click)="isActive = !isActive"
-      [attr.aria-label]="'isActive password'" [attr.aria-pressed]="isActive">
-      <mat-icon *ngIf="formRegister.get('inputPassword').dirty">{{isActive ?  'visibility' : 'visibility_off'}}
-      </mat-icon>
-    </button>
-
-    <mat-hint class="mat-hint">
-      <div *ngIf="formRegister.get('inputPassword').untouched">Введите
-        пароль (минимум 6 символов)</div>
-
-      <div class="validator"
-        *ngIf="formRegister.get('inputPassword').touched && formRegister.get('inputPassword').invalid">
-
-        <span *ngIf="formRegister.get('inputPassword').hasError('required')">
-          Пароль не может быть пустым
-        </span>
-
-        <span *ngIf="formRegister.get('inputPassword').hasError('minlength')">
-          Не выполнено требование к длине пароля. Сейчас введено символов:
-          {{formRegister.get('inputPassword').value.length}}
-        </span>
-
-      </div>
-    </mat-hint>
-  </mat-form-field>
-
-  <br>
-
-  <button mat-button class="mat-btn" type="submit" mat-flat-button [disabled]="formRegister.invalid" color="primary">
-    Создать
-    <mat-icon aria-hidden="false" aria-label="Example home icon">
-      keyboard_arrow_right
-    </mat-icon>
-  </button>
-
-  <a class="information-for-user" (click)="displayService.toogle(0)">
-    Нет учетной записи?
-  </a>
-  <button type="button" (click)="0"> Hello friend !</button>
+      <form [formGroup]="formRegister" (keydown.enter)="onSubmit()" (ngSubmit)="onSubmit()"
+        class="form-signin col-auto">
+        <div class="text-center mb-4">
+          <h2 class="h2 mb-2 font-weight-bold">Регистрация</h2>
+          <p style="margin-bottom: 20px;">Создайте учетную запись в приложении для доступа к контенту</p>
+        </div>
 
 
 
-</form>
+        <div class="form-label-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <span class="material-icons-outlined">
+                account_circle
+              </span>
+            </span>
+          </div>
+          <input type="text" formControlName="inputDisplayName" class="form-control fix-rounded-right"
+            placeholder="Ivan Bloger" required="">
+        </div>
+
+
+        <div class="validators">
+          <span *ngIf="formRegister.get('inputDisplayName').untouched && !formRegister.get('inputDisplayName').valid">
+            Пожалуйста представьтесь
+          </span>
+
+          <div *ngIf="formRegister.get('inputDisplayName').touched && formRegister.get('inputDisplayName').invalid"
+            style="color: indianred;">
+            <span *ngIf="formRegister.get('inputDisplayName').hasError('required')">
+              Заполните поле
+            </span>
+          </div>
+
+          <span *ngIf="formRegister.get('inputDisplayName').valid" style="color: green;">
+            Поле заполнено корректно
+          </span>
+        </div>
+
+
+        <div class="form-label-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <span class="material-icons">
+                mail_outline
+              </span>
+            </span>
+          </div>
+          <input type="email" formControlName="inputEmailLogin" class="form-control fix-rounded-right"
+            placeholder="ivan@cvetkoff.ru">
+        </div>
+
+
+        <div class="validators">
+          <span *ngIf="formRegister.get('inputEmailLogin').untouched && !formRegister.get('inputEmailLogin').valid">
+            Мы не рассылаем спам
+          </span>
+
+          <div *ngIf="formRegister.get('inputEmailLogin').touched && formRegister.get('inputEmailLogin').invalid"
+            style="color: indianred;">
+            <span *ngIf="formRegister.get('inputEmailLogin').hasError('required')">
+              Введите не пустой e-mail
+            </span>
+            <span *ngIf="formRegister.get('inputEmailLogin').hasError('email')">
+              Введите корректный e-mail
+            </span>
+          </div>
+
+          <span *ngIf="formRegister.get('inputEmailLogin').valid" style="color: green;">
+            Поле заполнено корректно
+          </span>
+        </div>
+
+
+
+
+        <div class="form-row">
+          <div class="form-label-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <span class="material-icons">
+                  vpn_key
+                </span>
+              </span>
+            </div>
+            <input type="password" formControlName="inputPassword" [type]="isActive ? 'password' : 'text'"
+              class="form-control" placeholder="Pa$$w0rd" required="">
+          </div>
+
+
+
+        </div>
+
+
+        <div class="validators">
+          <span *ngIf="formRegister.get('inputPassword').untouched">
+            Введите пароль (минимум 6 символов)
+          </span>
+
+          <div *ngIf="formRegister.get('inputPassword').touched && formRegister.get('inputPassword').invalid"
+            style="color: indianred;">
+            <span *ngIf="formRegister.get('inputPassword').hasError('required')">
+              Пароль не может быть пустым
+            </span>
+
+            <span *ngIf="formRegister.get('inputPassword').hasError('minlength')" style="color: indianred;">
+              Вы ввели символов: {{formRegister.get('inputPassword').value.length}}. Надо 6.
+            </span>
+          </div>
+
+          <span *ngIf="formRegister.get('inputPassword').touched && !formRegister.get('inputPassword').invalid"
+            style="color: green;">
+            Пароль введен корректно
+          </span>
+        </div>
+
+
+
+        <div class="button-wrapper">
+          <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!(formRegister.valid)"
+            (click)="onSubmit(); isActive = !isActive" [attr.aria-label]="'isActive password'"
+            [attr.aria-pressed]="isActive">Зарегистрировать</button>
+        </div>
+        <p class="mt-3 mb-3 text-muted text-center hint" [routerLink]="[ '/account/login' ]">Есть личный кабинет?</p>
+      </form>
+
+    </div>
+
+
+
+  </div>
+</div>

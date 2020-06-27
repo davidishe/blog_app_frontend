@@ -1,41 +1,56 @@
-import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BusyService } from './services/infrastructure/busy.service';
 import { Subscription } from 'rxjs';
-import { BasketService } from './components/content/basket/basket.service';
-import { error } from 'protractor';
 import { AccountService } from './components/layouts/account/account.service';
+import { BusyService } from './services/infrastructure/busy.service';
+import { IArticle } from './shared/models/articles/article';
+import { ArticleService } from './services/articles/article.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
   title = 'Цветкофф';
   jwtHelper = new JwtHelperService();
+
+  footerVisible: boolean;
+
+  status$: string = 'notloading';
   sub: Subscription;
 
 
   constructor(
     public busyService: BusyService,
     private ref: ChangeDetectorRef,
-    private basketService: BasketService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private articleService: ArticleService
   ) {
 
-    }
+  }
+  ngAfterViewChecked(): void {
+    this.ref.markForCheck();
+    this.ref.detectChanges();
+  }
+
 
   ngOnInit(): void {
-    this.ref.markForCheck();
-    this.loadBasket();
+
+    this.sub = this.busyService.sharedStatus.subscribe(status => this.status$ = status);
     this.loadCurrentUser();
+    // this.loadAllArticles();
+  }
+
+  loadAllArticles() {
+    this.articleService.GetAll().subscribe((response) => {
+      // console.log(response);
+    });
   }
 
 
   loadCurrentUser() {
-    const token = localStorage.getItem('garden-app-token');
+    const token = localStorage.getItem('app-blog-token');
     if (token) {
       this.accountService.loadCurrentUser().subscribe(() => {
       }, err => {
@@ -44,19 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadBasket() {
-    const basketId = localStorage.getItem('app-basket-id');
-    if (basketId) {
-      this.basketService.getBasket(basketId).subscribe(() => {
-        console.log('bask init');
-      }, err => {
-        console.log(err);
-      });
-    }
-  }
-
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
   }
 
 

@@ -1,27 +1,15 @@
-@import "~@angular/material/theming";
-
-@include mat-core();
-
-$my-theme-primary: mat-palette($mat-grey, A700, A800, A900);
-$my-theme-accent: mat-palette($mat-pink, A200, A100, A400);
-$my-theme-warn: mat-palette($mat-deep-orange);
-
-$my-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
-@include angular-material-theme($my-theme);
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;400;500;600;700;900&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 :root {
   --main-text-color: rgba(59, 57, 57, 0.808);
-  --main-text-font: "IBM Plex Sans", sans-serif;
-  --main-theme-color-primary-blue: #3f51b5;
-  // --main-theme-color-indigo: #7953d2;
-  --main-theme-color-darkblue: #050070;
-  --main-theme-color-error: #f44336;
-  --main-theme-color-grey: #323232;
-  --main-theme-color-warn: #ff4081;
-  --main-theme-color-background: rgb(250, 247, 247);
-
-  // g
-  --main-font-color: rgb(6, 11, 29);
+  --th: "Montserrat Alternates", sans-serif;
+  --text-regular: "Roboto", sans-serif;
+  --c1: #4630eb;
+  --c2: #363355;
+  --c3: #ff4081;
+  --c4: #f7f8f9;
+  --cf: rgb(6, 11, 29);
 }
 
 *,
@@ -36,14 +24,13 @@ body {
   padding-bottom: 0rem;
   margin-top: 0rem;
   font-family: var(--main-text-font);
-  // line-height: 1.5rem;
   outline: none;
 }
 
 body,
 html {
   width: 100%;
-  font-family: var(--main-text-font);
+  font-family: var(--text-regular);
   height: 100%;
   box-sizing: border-box;
   padding-bottom: 0px;
@@ -57,35 +44,32 @@ html {
 
 html {
   font-family: var(--main-text-font);
-  background-color: #fafafa;
+  background-color: white;
   h1,
   h2,
   h3,
   h4,
   h5 {
-    font-weight: 700;
-  }
-}
-
-html {
-  .container {
-    margin: 0rem 0rem;
-    padding-top: 0rem;
-    padding-left: 0rem;
-    padding-right: 0rem;
+    font-family: var(--th);
   }
 
-  .cdk-overlay-pane {
-    snack-bar-container {
-      simple-snack-bar {
-        span {
-          color: white;
-          opacity: 1;
-          width: 100%;
-          text-align: center;
-        }
-      }
-    }
+  h1 {
+    font-size: 42px;
+  }
+
+  h2 {
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  h4 {
+    font-size: 18px;
+    font-weight: bold;
   }
 }
 
@@ -128,28 +112,126 @@ label.xng-breadcrumb-trail {
   font-weight: 500;
 }
 
-.mat-btn-wrapper {
-  justify-content: center;
+//  end button global styles ==========================================================================================
+.btn-primary {
+  background-color: transparent;
+}
+
+button,
+button:active,
+button.btn:focus,
+button:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn {
+  background-color: var(--c2) !important;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  border-radius: 0px;
+  font-weight: 500;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.btn:hover:enabled,
+.btn:active {
+  background-color: var(--c1) !important;
+  box-shadow: none !important;
+}
+
+.btn:disabled,
+.btn:hover:disabled {
+  border-color: darkgray;
+}
+
+.btn-second {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: white;
+  border: 1px var(--c1) solid !important;
+  outline: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 11px 24px;
+  border-radius: 0px;
+  font-weight: 500;
+  color: var(--c1);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+  transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+  transition-delay: 0s, 0s, 0s, 0s;
+}
+
+.btn-second:hover {
+  color: white;
+  background-color: var(--c1);
+}
+
+//  end button global styles ==========================================================================================
+
+//  input global styles ==============================================================================================================
+input.form-control {
+  border-radius: 0px;
+  border: 0px;
+  border-bottom: 1px rgba(180, 180, 177, 0.5) solid;
+  transition: all linear 0.2s;
+  background-color: transparent;
+  padding-left: 50px;
+  line-height: 1rem;
   vertical-align: middle;
+}
+input.form-control:focus {
+  border-bottom: 1px black solid;
+  background-image: none;
+  outline: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
 
-  .mat-btn-service {
-    bottom: 2px;
-    height: 55px;
-    position: relative;
-    top: 3.5px;
-    padding-left: 30px;
-    border-radius: 30px;
-    background-color: rgb(32, 32, 32);
+.input-group-prepend {
+  .input-group-text {
+    width: 0px;
+    padding: 0px 0px;
+    border: 0px;
+    right: 70px;
+    background-color: transparent;
+    border-radius: 0px;
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
 
-    mat-icon {
+    .material-icons,
+    .material-icons-outlined {
+      left: 20px;
       position: relative;
-      bottom: 1.9px;
     }
   }
+}
 
-  .mat-btn-service:hover,
-  .mat-btn-service:focus,
-  .mat-btn-servicen:active {
-    background-color: #000000;
-  }
+.input-group-prepend {
+  width: 0px;
+}
+
+//  end input global styles ==========================================================================================
+
+.row {
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+main {
+  margin-top: 120px;
+  padding-bottom: 120px;
 }

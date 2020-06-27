@@ -11,6 +11,7 @@ export interface User {
 
 
 export interface IUser {
+  id?: number;
   email: string;
   displayName?: string;
   token?: string;

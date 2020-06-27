@@ -1,0 +1,15 @@
+<section class="comment-wrapper">
+  <form class="form-group" [formGroup]="formComments" (keyup)="resizeCommentHeight()" (ngSubmit)="onComment()">
+    <textarea formControlName="inputComments" class="form-control cdk-textarea-autosize" id="inputComments"
+      placeholder="Написать комментарий" (click)="btnVisible = true" [ngStyle]="{'cursornone': btnVisible}">
+      </textarea>
+    <div class="button-wrapper" *ngIf="btnVisible">
+      <button class="btn btn-lg btn-primary btn-comment" type="submit" [disabled]="!(formComments.valid)">
+        Отправить
+      </button>
+      <button class="btn btn-lg btn-primary btn-сancel" (click)="onCancel()" [ngStyle]="{'cursornone': false}">
+        Отменить
+      </button>
+    </div>
+  </form>
+</section>

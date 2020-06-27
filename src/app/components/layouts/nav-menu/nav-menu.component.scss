@@ -1,206 +1,148 @@
-.mat-toolbar-wrapper {
-  right: 0px;
-  background-color: #fafafa;
+nav {
   position: fixed;
-  z-index: 10;
   width: 100%;
+  top: 0px;
+  padding-left: 2rem;
+  padding-right: 20px;
+  font-family: var(--th);
+  font-weight: 500;
+  background-color: var(--c4);
+  z-index: 1000;
+  background-color: white !important;
+}
 
-  .mat-toolbar {
-    background-color: #fafafa;
-    top: 0;
-    left: 0px;
-    color: rgb(6, 11, 29);
-    width: 100%;
+input.search {
+  padding-left: 5px;
+  color: black;
+  font-weight: 400;
+  font-size: 15px;
+  margin-right: 60px;
+  margin-left: 60px;
+  width: 100%;
+}
 
-    .mat-toolbar-row {
-      z-index: 20;
-      padding-top: 45px;
-      padding-bottom: 45px;
-      width: 100%;
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  background-color: transparent;
+  transition: all ease-in-out 0.2s;
 
-      .nav-items-wrapper {
-        position: relative;
-        width: 100%;
-        justify-content: flex-start;
+  .material-icons {
+    margin-right: 10px;
+    text-decoration: none;
+  }
 
-        .nav-items {
-          z-index: 30;
-          display: flex;
-          vertical-align: middle;
-          align-items: center;
-          justify-content: space-between;
-          position: relative;
-          // background-color: rgb(220, 240, 227);
-
-          .mat-btn {
-            i {
-              margin-right: 5px;
-            }
-          }
-
-          .item-wrapper {
-            // background-color: rgb(214, 203, 203);
-
-            .item-wrapper-cart {
-              min-width: 133px;
-            }
-
-            .item-wrapper-identity {
-              min-width: 133px;
-              margin-left: 20px;
-              // background-color: rgb(255, 255, 255);
-            }
-          }
-
-          .item-wrapper-menu {
-            // border: 1px rgb(201, 198, 198) solid;
-            left: 0px;
-            min-width: 133px;
-            margin-right: 20px;
-            margin-left: 20px;
-          }
-        }
-      }
-    }
+  b {
+    margin-left: 5px;
   }
 }
 
-// планшетный размер
-@media (max-width: 1400px) {
-  .mat-toolbar-wrapper {
-    width: 100%;
-    background-color: #fafafa;
+.form-inline {
+  display: inline-flex;
 
-    mat-toolbar {
-      z-index: 2000;
-
-      background-color: #fafafa;
-      top: 0;
-      left: 28px;
-      width: 100%;
-      color: rgb(6, 11, 29);
-      padding-right: 28px;
-
-      mat-toolbar-row {
-        z-index: 2000;
-        padding-top: 45px;
-        padding-bottom: 45px;
-
-        .nav-items-wrapper {
-          position: relative;
-          width: 100%;
-
-          .nav-items {
-            display: flex;
-            vertical-align: middle;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-
-            .mat-btn {
-              z-index: 2000;
-
-              i {
-                margin-right: 5px;
-              }
-            }
-
-            .example-full-width {
-              width: 500px;
-              background-color: transparent;
-              margin-left: 20px;
-              font-size: 15px;
-
-              mat-icon {
-                top: 5px;
-                padding-left: 4px;
-                padding-right: 4px;
-                position: relative;
-                font-size: 22px;
-              }
-            }
-
-            .item-wrapper-search {
-              display: none;
-            }
-          }
-        }
-      }
-    }
+  .material-icons {
+    position: absolute;
   }
 }
 
-// теелфон
-// планшетный размер
-@media (max-width: 480px) {
-  .mat-toolbar-wrapper {
-    width: 100%;
-    background-color: #fafafa;
+a {
+  color: black !important;
+  cursor: pointer;
+}
 
-    mat-toolbar {
-      z-index: 2000;
+.navbar-items {
+  display: flex;
+  width: 100%;
+}
 
-      background-color: #fafafa;
-      position: fixed;
-      top: 0;
-      left: 28px;
-      width: 100%;
-      color: rgb(6, 11, 29);
-      padding-right: 28px;
+.navbar-items-mobile {
+  padding-top: 100px;
+  padding-left: 20px;
 
-      mat-toolbar-row {
-        z-index: 2000;
-        padding-top: 45px;
-        padding-bottom: 45px;
-        padding-left: 0px;
-        padding-right: 0px;
+  height: 100%;
+  display: block;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  background-color: white;
+  z-index: 999;
+}
 
-        .nav-items-wrapper {
-          position: relative;
-          width: 100%;
+.dropdown-item {
+  font-size: 13px;
+  font-weight: 500;
+}
 
-          .nav-items {
-            display: flex;
-            vertical-align: middle;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            padding-left: 0px;
-            padding-right: 0px;
+.dropdown-item:hover {
+  background-color: white;
+  cursor: pointer;
+}
 
-            .mat-btn {
-              z-index: 2000;
+.dropdown-menu.show {
+  padding: 20px 10px;
+}
 
-              i {
-                margin-right: 5px;
-              }
-            }
+app-toast {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 30px;
+}
 
-            .example-full-width {
-              width: 500px;
-              background-color: transparent;
-              margin-left: 20px;
-              font-size: 15px;
+.btn-login:hover {
+  color: var(--c1);
+}
 
-              mat-icon {
-                top: 5px;
-                padding-left: 4px;
-                padding-right: 4px;
-                position: relative;
-                font-size: 22px;
-              }
-            }
+@media (max-width: 767px) {
+  nav {
+    padding-right: 20px;
+    padding-left: 20px;
 
-            .item-wrapper-search {
-              display: none;
-            }
-
-            .item-wrapper-identity {
-              display: none;
-            }
-          }
-        }
-      }
+    .menu-burger {
+      color: black;
     }
+
+    .navbar-items {
+      display: none;
+      width: 100%;
+    }
+  }
+
+  input {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 570px) {
+  nav {
+    padding-right: 10px;
+    padding-left: 10px;
+
+    .menu-burger {
+      color: black;
+    }
+
+    .search {
+      margin-left: 0px;
+    }
+  }
+
+  .li {
+    padding-bottom: 30px;
+    padding-top: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-items-mobile {
+    display: none;
   }
 }

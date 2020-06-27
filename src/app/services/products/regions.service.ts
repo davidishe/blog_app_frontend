@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { IProductRegion } from 'src/app/shared/models/region';
+import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
 
@@ -9,33 +11,36 @@ export class RegionsService {
 
 
   baseUrl = environment.apiUrl;
-  itemList: IProductRegion[] = [];
-  httpOptions = {
-    headers: new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('app-token')
-    })
-  };
+  regions: IProductRegion[] = [];
 
   constructor(private http: HttpClient) { }
 
   GetAllRegions() {
-    return this.http.get<any>(this.baseUrl + 'products/regions', this.httpOptions);
+    if (this.regions.length > 0) {
+      return of(this.regions);
+    }
+    return this.http.get<any>(this.baseUrl + 'products/regions').pipe(
+      map(response => {
+        this.regions = response;
+        return response;
+      })
+    );
   }
 
   Create(productRegion: IProductRegion) {
-    return this.http.post(this.baseUrl + 'products/create-region', productRegion, this.httpOptions);
+    return this.http.post(this.baseUrl + 'products/create-region', productRegion);
   }
 
   GetById(id: number) {
-    return this.http.get(this.baseUrl + 'get-item/?id=' + id, this.httpOptions);
+    return this.http.get(this.baseUrl + 'get-item/?id=' + id);
   }
 
   Update(productRegion: IProductRegion) {
-    return this.http.post(this.baseUrl + 'update-item', productRegion, this.httpOptions);
+    return this.http.post(this.baseUrl + 'update-item', productRegion);
   }
 
   Delete(id: number) {
-    return this.http.delete(this.baseUrl + 'delete-item/?id=' + id, this.httpOptions);
+    return this.http.delete(this.baseUrl + 'delete-item/?id=' + id);
   }
 
 }

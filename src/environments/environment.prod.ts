@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://karabaradaram.ru/api/',
-  authUrl: 'https://karabaradaram.ru/api/account/',
+  apiUrl: 'api/',
+  authUrl: 'api/account/',
 };

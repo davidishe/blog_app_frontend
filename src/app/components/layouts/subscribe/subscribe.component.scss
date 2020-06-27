@@ -1,0 +1,63 @@
+.subscribe-wrapper {
+  background-color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  // background-color: rgb(104, 160, 96);
+
+  .subscribe-form {
+    // background-color: rgb(201, 157, 157);
+    justify-content: center;
+    align-items: center;
+    display: block;
+    max-width: 100%;
+    position: relative;
+
+    h3.subscribe-title,
+    span.subscribe-subtitle {
+      color: rgba(22, 22, 22, 0.9) !important;
+    }
+
+    .form-label-group {
+      margin-top: 20px;
+      max-width: 340px;
+      margin-left: auto;
+      margin-right: auto;
+
+      input {
+        position: relative;
+        background-color: white;
+        height: 45px;
+        border-bottom: 1px var(--c2) solid;
+        padding-left: 20px;
+        color: rgba(22, 22, 22, 0.9) !important;
+        border: 1px rgba(22, 22, 22, 0.9) solid;
+        border-right: 0px;
+        font-size: 14px;
+        border-radius: 0px;
+      }
+
+      button {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        color: white;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 5px;
+      }
+    }
+
+    .validators {
+      // background-color: rgb(199, 191, 83);
+      position: absolute;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      font-size: 12px;
+      right: 80px;
+    }
+  }
+}

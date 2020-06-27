@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { map, tap, delay } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { IUser } from 'src/app/shared/models/user/user';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material';
+import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { IUser, User } from 'src/app/shared/models/user/user';
+import { HttpClient } from '@angular/common/http';
 import { IAddress } from 'src/app/shared/models/user/address';
+import { ToastService } from 'src/app/services/infrastructure/toast.service';
 
 @Injectable({providedIn: 'root'})
 
 export class AccountService {
-
 
   baseUrl = environment.authUrl;
   private currentUserSource = new BehaviorSubject<IUser>(null);
@@ -20,28 +18,22 @@ export class AccountService {
 
   userId: number;
   decodedToken: any;
-  jwtHelper = new JwtHelperService();
 
 
-  // httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type':  'application/json; charset=utf-8',
-  //     Authorization: 'Bearer ' + localStorage.getItem('garden-app-token')
-  //   })
-  // };
 
   constructor(
     public http: HttpClient,
     private router: Router,
-    private snackBar: MatSnackBar,
+    private toastService: ToastService
   ) {}
 
   login(values: any) {
     return this.http.post<any>(this.baseUrl + 'login', values).pipe(
       map((user: IUser) => {
         if (user) {
-          localStorage.setItem('garden-app-token', user.token);
+          localStorage.setItem('app-blog-token', user.token);
           this.currentUserSource.next(user);
+          this.toastService.setToast('success', 'привет!');
         }
       })
     );
@@ -51,9 +43,9 @@ export class AccountService {
     return this.http.post<any>(this.baseUrl + 'register', values).pipe(
       map((user: IUser) => {
         if (user) {
-          localStorage.setItem('garden-app-token', user.token);
+          localStorage.setItem('app-blog-token', user.token);
           this.currentUserSource.next(user);
-          this.router.navigateByUrl('/shop');
+          this.router.navigateByUrl('/');
         }
       }, err => {
         console.log(err);
@@ -64,7 +56,7 @@ export class AccountService {
   logout() {
     this.currentUserSource.next(null);
     this.router.navigateByUrl('/');
-    localStorage.removeItem('garden-app-token');
+    localStorage.removeItem('app-blog-token');
     this.openSnackBar('до новой встречи ))');
   }
 
@@ -72,23 +64,12 @@ export class AccountService {
     return this.http.get<any>(this.baseUrl + 'checkmail/?email=' + email);
   }
 
-  checkEmailExists2(email: string) {
-    return this.http.get<any>(this.baseUrl + 'checkmail/?email=' + email).pipe(
-      map((res: any) => {
-        if (res) {
-          console.log(res);
-        }
-      }, err => {
-        console.log(err);
-      })
-    );
-  }
-
   loadCurrentUser() {
     return this.http.get(this.baseUrl + 'current').pipe(
       map((user: IUser) => {
         if (user) {
-          localStorage.setItem('token', user.token);
+          localStorage.setItem('app-blog-token', user.token);
+          localStorage.setItem('app-blog-user-id', JSON.stringify(user.id));
           this.currentUserSource.next(user);
         }
       })
@@ -113,15 +94,13 @@ export class AccountService {
   }
 
   logedIn() {
-    const token = localStorage.getItem('garden-app-token');
     this.userId = + localStorage.getItem('userId');
-    return !this.jwtHelper.isTokenExpired(token);
+    return true;
   }
 
 
   checkEmailNotTaken(email: string) {
     return this.http.get<any>(this.baseUrl + 'checkmail/?email=' + email).pipe(
-      delay(1000),
       map(res => {
         console.log(res);
         return res;
@@ -138,7 +117,7 @@ export class AccountService {
   }
 
   openSnackBar(message: string) {
-    this.snackBar.open(message, '', {duration: 2500});
+    console.log(message);
   }
 
 

@@ -1,0 +1,43 @@
+<div class="subscribe-wrapper">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h3 class="subscribe-title text-center">Следи за обновлениями</h3>
+      <p class="subscribe-subtitle justify-content-center text-center">
+        Оставь свой e-mail и может быть будем направлять тебе напоминалку об обновлении открытого контента. Подпишись -
+        а то
+        проиграешь!
+      </p>
+    </div>
+
+
+    <div class="justify-content-center" style="width: 100%;">
+      <form class="subscribe-form" [formGroup]="subscribeForm">
+
+        <div class="form-label-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <span class="material-icons" style="left: 20px; z-index: 4; bottom: 4px;">
+                mail_outline
+              </span>
+            </span>
+          </div>
+          <input type="email" formControlName="inputEmail" class="form-control fix-rounded-right"
+            style="padding-left: 40px;" placeholder="johnsnow@domen.ru">
+          <button class="btn" type="submit">Подписаться</button>
+
+        </div>
+
+
+        <div class="validators">
+          <div *ngIf="subscribeForm.get('inputEmail').touched && subscribeForm.get('inputEmail').invalid"
+            style="color: indianred;">
+            <span *ngIf="subscribeForm.get('inputEmail').hasError('required')">
+              Введите e-mail
+            </span>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

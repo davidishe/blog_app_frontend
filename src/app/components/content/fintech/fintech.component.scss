@@ -1,0 +1,28 @@
+h3,
+h2,
+p,
+.subtitle {
+  margin-left: 0px;
+}
+
+.cdk-textarea-autosize {
+  height: 36px;
+}
+
+.col-md-3,
+.col-md-6 {
+  margin-left: 0px;
+  padding-left: 0px !important;
+  padding-right: 0px;
+  padding-bottom: 30px;
+  margin-right: 20px;
+  max-width: 250px;
+}
+
+@media (max-width: 770px) {
+  .col-md-3,
+  .col-md-6 {
+    margin-right: 10px;
+    max-width: 100%;
+  }
+}

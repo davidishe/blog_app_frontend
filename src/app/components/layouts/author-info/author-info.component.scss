@@ -1,0 +1,23 @@
+.user-profile {
+  display: flex;
+  padding-bottom: 30px;
+  padding-top: 30px;
+
+  .user-description {
+    margin-left: 20px;
+  }
+
+  img {
+    position: relative;
+    max-height: 100px;
+    border-radius: 100px;
+  }
+
+  p {
+    margin-bottom: 0px;
+  }
+
+  .user-name {
+    font-weight: 700;
+  }
+}

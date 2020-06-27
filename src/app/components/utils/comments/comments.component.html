@@ -1,0 +1,33 @@
+<section class="comments-wrapper" *ngIf="comments">
+  <div class="container">
+    <div class="comment" *ngFor="let comment of comments; let i=index">
+
+      <div class="comment-content">
+        <div class="comment-content-author-wrapper">
+          <img class="img-fluid" src="assets/users/hopkins.png">
+          <div class="author-section">
+            <p class="author-name">{{comment.commentAuthorName}}</p>
+            <p class="comment-date">{{comment.enrolledDate | date}}</p>
+          </div>
+        </div>
+        <p class="comment-content-text">{{comment.commentText}}</p>
+        <div class="comment-bottom">
+          <!-- <span class="comment-favor">В избранное</span> -->
+          <span class="comment-reply" (click)="isCommented(comment)">Ответить</span>
+          <span class="comment-reply" *ngIf="comment.commentAuthorId === currentUserId"
+            (click)="onEdit(comment.commentText, comment.id)">
+            Изменить
+          </span>
+        </div>
+      </div>
+      <div *ngIf="comment.isCommented">
+        <app-add-comment [formComments]="formComments" (myOutputVal)="readOutputValueEmitted($event, comment)"
+          [article]="article" [parentId]="comment.id">
+        </app-add-comment>
+      </div>
+      <div class="sub-comment-wrapper">
+        <app-comments [comments]="comment.subComments"> </app-comments>
+      </div>
+    </div>
+  </div>
+</section>

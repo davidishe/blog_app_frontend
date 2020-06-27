@@ -4,10 +4,16 @@ import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { LayerComponent } from './layer/layer.component';
-import { MaterialModule } from 'src/app/shared/material.module';
 import { OrderTotalComponent } from './order-total/order-total.component';
 import { RouterModule } from '@angular/router';
 import { StepperComponent } from './stepper/stepper.component';
+import { DateAgoPipe } from 'src/app/shared/pipes/time-ago.pipe';
+import { ProductCardComponent } from './products/product-card/product-card.component';
+import { ToastComponent } from './toast/toast.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthorInfoComponent } from '../layouts/author-info/author-info.component';
+
 
 @NgModule({
   declarations: [
@@ -15,20 +21,27 @@ import { StepperComponent } from './stepper/stepper.component';
     PageHeaderComponent,
     LayerComponent,
     OrderTotalComponent,
-    StepperComponent
+    StepperComponent,
+    DateAgoPipe,
+    ProductCardComponent,
+    ToastComponent,
+    AuthorInfoComponent
 
   ],
   imports: [
     CommonModule,
     BreadcrumbModule,
-    MaterialModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     BreadCrumbComponent,
     PageHeaderComponent,
     OrderTotalComponent,
     StepperComponent,
+    ProductCardComponent,
+    ToastComponent,
+    DateAgoPipe,
+    AuthorInfoComponent,
 
     BreadcrumbModule,
     LayerComponent

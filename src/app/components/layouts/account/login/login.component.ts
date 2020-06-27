@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
-import { SideNavService } from 'src/app/services/side-nav.service';
 import { User, IUser } from 'src/app/shared/models/user/user';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
@@ -17,8 +15,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    private sideNavService: SideNavService,
     private accountService: AccountService,
     public displayService: DisplayService
     ) {}
@@ -39,8 +35,7 @@ export class LoginComponent implements OnInit {
         Validators.minLength(6)])
     });
 
-    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/shop';
-    this.sideNavService.opened = false;
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/';
     this.isActive = true;
   }
 
@@ -66,7 +61,7 @@ export class LoginComponent implements OnInit {
   }
 
   openSnackBar(message: string) {
-    this.snackBar.open(message, '', {duration: 2500});
+    console.log(message);
   }
 
   changePasswordType() {

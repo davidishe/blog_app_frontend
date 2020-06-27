@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class BusyService {
 
-  private status = new BehaviorSubject(false);
+  private status = new BehaviorSubject('string');
   sharedStatus = this.status.asObservable();
 
   constructor() {
   }
 
 
-  isLoading(status: boolean) {
+  isLoading(status: string) {
     this.status.next(status);
   }
 

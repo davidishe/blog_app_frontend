@@ -3,7 +3,6 @@ import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
 
 
 
@@ -12,13 +11,11 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(
     private router: Router,
-    private snackBar: MatSnackBar
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    if (!req.url.includes('checkmail')) {
-      return next.handle(req).pipe(
+      if (!req.url.includes('checkmail')) {
+      next.handle(req).pipe(
         catchError(error => {
           if (error) {
             if (error.status === 400) {
@@ -39,12 +36,14 @@ export class ErrorInterceptor implements HttpInterceptor {
           return throwError(error);
         })
       );
+      return next.handle(req);
     }
+
 
   }
 
   openSnackBar(message: string) {
-    this.snackBar.open(message, '', {duration: 2500});
+    console.log(message);
   }
 
 }

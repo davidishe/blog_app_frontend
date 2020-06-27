@@ -1,0 +1,7 @@
+<section *ngIf="article" class="container user-profile">
+  <img class="img-fluid" src="{{article.authorPhoto}}">
+  <div class="user-description">
+    <p class="user-name">{{article.authorDisplayName}}</p>
+    <p>{{article.authorDescription}}</p>
+  </div>
+</section>

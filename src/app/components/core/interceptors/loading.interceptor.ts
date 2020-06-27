@@ -1,54 +1,55 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpEventType, HttpErrorResponse } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { finalize, tap, catchError } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { BusyService } from 'src/app/services/infrastructure/busy.service';
-import { error } from 'protractor';
-import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
 
   constructor(
     private busyService: BusyService,
-    private snackBar: MatSnackBar
+
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.busyService.isLoading('loading');
 
-    this.busyService.isLoading(true);
+
+    if (req.method === 'POST' && req.url.includes('orders')) {
+      return next.handle(req);
+    }
 
     if (!req.url.includes('checkmail')) {
+
       return next.handle(req).pipe(
-        finalize(() => {
-          // this.busyService.isLoading(true);
-        }),
-        tap(event => {
-          this.busyService.isLoading(true);
-          if (event.type === HttpEventType.Response) {
-          this.busyService.isLoading(true);
-          if (event) {
-              this.busyService.isLoading(false);
-            }
+
+        tap((event: HttpResponse<any>) => {
+          // console.log(event);
+
+          if (event.ok === true) {
+          this.busyService.isLoading('notloading');
+          // console.log('ЗАГРУЗКА ЗАВЕРШЕНА');
+
           }
         }),
         catchError(err => {
           if (err instanceof HttpErrorResponse) {
-            this.busyService.isLoading(false);
+            this.busyService.isLoading('iserror');
             console.log(err);
             this.openSnackBar('Произошла ошибка');
-
-          } else {
-            this.busyService.isLoading(false);
           }
           return of(err);
         })
       );
+    } else {
+      return next.handle(req);
     }
+
   }
 
   openSnackBar(message: string) {
-    this.snackBar.open(message, '', {duration: 2500});
+    console.log(message);
   }
 
 

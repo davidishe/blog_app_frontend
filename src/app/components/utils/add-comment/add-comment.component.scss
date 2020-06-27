@@ -1,0 +1,67 @@
+.comment-wrapper {
+  // background-color: rgb(229, 255, 233);
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  border: 1px solid;
+  margin-bottom: 30px;
+  border-color: black;
+}
+
+.comment-wrapper:hover {
+  border-color: var(--c1);
+}
+
+textarea.form-control {
+  border-radius: 0px;
+  border: 0px;
+  transition: all ease-in-out 0.1s;
+  background-color: transparent;
+  resize: none;
+  padding: 0px 0px;
+}
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.cursornone {
+  cursor: text !important;
+}
+
+.button-wrapper {
+  // background-color: rgb(228, 210, 210);
+  justify-content: right;
+  display: flex;
+  position: relative;
+  height: 54px;
+
+  .btn-comment {
+    right: 0px;
+    position: absolute;
+    margin-right: 0px;
+  }
+  .btn-сancel {
+    right: 140px;
+    position: absolute;
+    margin-right: 0px;
+    background-color: rgb(230, 230, 230) !important;
+    color: #222;
+  }
+}
+
+@media (max-width: 570px) {
+  .button-wrapper {
+    display: block;
+
+    .btn-comment {
+      width: 48%;
+    }
+    .btn-сancel {
+      width: 48%;
+      left: 0px;
+    }
+  }
+}

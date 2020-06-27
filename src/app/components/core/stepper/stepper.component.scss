@@ -59,11 +59,10 @@
           mat-icon {
             color: white;
             display: flex;
-            width: 100%;
             justify-content: center;
             align-items: center;
             vertical-align: middle;
-            font-size: 14px;
+            font-size: 11px;
           }
 
           .mr {
@@ -106,4 +105,8 @@
 button {
   height: 50px;
   cursor: pointer;
+
+  .material-icons {
+    font-size: 19px;
+  }
 }
